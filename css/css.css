@@ -126,6 +126,12 @@
     grid-column: 1/3;
     align-content: center;
 }
+.removerContainer {
+    background-color: goldenrod;
+    grid-row: 5;
+    grid-column: 1/3;
+    align-content: center;
+}
 
 .sidebar {
     background-color: gold;

@@ -1,8 +1,23 @@
 // TODOL: Here we load the players and the elements
 // import VideoController from '../custom_player.js';
+// const globby = require('globby')
+/*
+DATABASE MOCKUP
+urls for the lessons
+start and finish time
 
-const controler = new VideoController();
-let url = "manifest.mpd";
+
+*/
+let url1 = "lesson1/171016_Seelscheid_Doppelstunde_lehrercam-1280x720_h264_manifest.mpd";
+let url2 = "lesson1/171016_Seelscheid_Doppelstunde_matheecke-1280x720_h264_manifest.mpd";
+let url3 = "lesson1/171016_Seelscheid_Doppelstunde_TG_1_a-1280x720_h264_manifest.mpd";
+let url4 = "lesson1/171016_Seelscheid_Doppelstunde_TG_2_a-1280x720_h264_manifest.mpd";
+let audio_url = 'lesson1/teacher_audio.mpd';
+let start_time = 2000;
+let finish_time = 1000;
+
+const controler = new VideoController(globalTime=start_time);
+
 
 console.log(controler.players)
 
@@ -21,13 +36,15 @@ function ready() {
 
 function loadVideos() {
     console.log(controler)
-    console.log(url)
+    console.log(url1)
     console.log(document.querySelector(`#video1`))
     controler.init();
-    controler.add(0, url)
-    controler.add(1, url)
-    controler.add(2, url)
-    controler.add(3, url)
+    controler.add(0, url1)
+    controler.add(1, url2)
+    controler.add(2, url3)
+    controler.add(3, url4)
+    controler.addTeacherAudio(audio_url)
+    controler.seek(start_time)
     console.log(controler.players)
 }
 
@@ -78,35 +95,58 @@ window.addEventListener("keydown", function (event) {
 
 
 function watchers() {
-    document.getElementById('timeSpan').innerText = `${controler.players[0].time()}/${controler.players[0].duration()}`
-    controler.globalTime = controler.players[0].time();
-    document.getElementById('playButton').addEventListener('click', function(e){
-        console.log('played')
-        controler.tooglePlay();
-        e.stopImmediatePropagation();
-        
-    }, false) 
-    document.getElementById('muteButton').addEventListener('click', function (e) {
-        console.log('played')
-        controler.toogleGlobalMute();
-        e.stopImmediatePropagation();
-
-    }, false) 
+    document.getElementById('timeSpan').innerText = `${controler.teacher_audio.time()}/${controler.teacher_audio.duration()}`
+    controler.globalTime = controler.teacher_audio.time();
+    
 }
 
+document.getElementById('playButton').addEventListener('click', function (e) {
+    console.log('played')
+    controler.tooglePlay();
+    e.stopImmediatePropagation();
 
+}, false)
+document.getElementById('muteButton').addEventListener('click', function (e) {
+    console.log('played')
+    controler.toogleGlobalMute();
+    e.stopImmediatePropagation();
+
+}, false) 
+
+document.getElementById('muteTeacherButton').addEventListener('click', function (e) {
+    console.log('played')
+    controler.onlyTeacherSound();
+    e.stopImmediatePropagation();
+
+}, false) 
 // add videos manually
 document.getElementById('add1').addEventListener('click', function (e) {
-    controler.add(0,url);   
+    controler.setSource(0,url1);   
 },false)
 document.getElementById('add2').addEventListener('click', function (e) {
-    controler.add(1, url);
+    controler.setSource(1, url2);
+    // console.log('source 1 readded')
+    console.log(url2)
+    console.log(controler.players)
 }, false)
 document.getElementById('add3').addEventListener('click', function (e) {
-    controler.add(2, url);
+    controler.setSource(2, url3);
 }, false)
 document.getElementById('add4').addEventListener('click', function (e) {
-    controler.add(3, url);
+    controler.setSource(3, url4);
+}, false)
+
+document.getElementById('remove1').addEventListener('click', function (e) {
+    controler.remove(0);
+}, false)
+document.getElementById('remove2').addEventListener('click', function (e) {
+    controler.remove(1);
+}, false)
+document.getElementById('remove3').addEventListener('click', function (e) {
+    controler.remove(2);
+}, false)
+document.getElementById('remove4').addEventListener('click', function (e) {
+    controler.remove(3);
 }, false)
 
 window.setInterval(function() {

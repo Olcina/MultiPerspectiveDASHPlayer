@@ -1,12 +1,21 @@
-// TODO: js class to controll the video players
+/* TODO: 
 
+js class to controll the video players
+the teacher audio should controll the global state of the video player
+    - duration
+    - autoplay
+    
+when a video is added we should call seek for the video when is ready
+using a promise call
 
+*/
 class VideoController {
     constructor(root_name = 'root',
         globalTime = 0,
         controlerMuted = true,
         controlerPlaying = false) {
         this.players = [];
+        this.teacher_audio = null;
         // this.player = dashjs.MediaPlayer().create()
         this.root_name = root_name;
         this.globalTime = globalTime;
@@ -25,7 +34,8 @@ class VideoController {
             //     document.getElementById(this.root_name).appendChild(base_element);
 
             this.players.push(dashjs.MediaPlayer().create())
-        }
+        };
+        this.teacher_audio = dashjs.MediaPlayer().create();
         // // bar wrapper
         // let barWrapper = document.createElement('div')
         // barWrapper.setAttribute('id', 'barWrapper')
@@ -58,8 +68,20 @@ class VideoController {
 
         // document.getElementById(this.root_name).innerHTML= html_to_root;
     }
+    remove(slot) {
+        this.players[slot].attachSource('');
+        console.log(`slot${slot} reseted`   )
+    }
 
-
+    setSource(slot, url) {
+        this.players[slot].attachSource(url);
+    }
+    addTeacherAudio(url) {
+        
+        let html_vid_element = document.querySelector(`#teacherAudio`)
+        console.log(html_vid_element)
+        this.teacher_audio.initialize(html_vid_element,url,false);
+    }
     add(slot, url) {
         let html_vid_element = document.querySelector(`#video${slot}`)
         this.players[slot].initialize(html_vid_element, url, false)
@@ -78,6 +100,16 @@ class VideoController {
     }
     tooglePlay() {
         // set state of the players to the controlerPlaying state
+        if (!this.controlerPlaying) {
+            try {
+                this.teacher_audio.play();
+            } catch (e) { }
+        } else {
+
+            try {
+                this.teacher_audio.pause();
+            } catch (e) { }
+        }
         for (const player of this.players) {
             if (!this.controlerPlaying) {
                 try {
@@ -94,7 +126,7 @@ class VideoController {
         this.controlerPlaying = !this.controlerPlaying;
     }
     seek(value) {
-
+        this.teacher_audio.seek(value);
         for (const player of this.players) {
             try {
                 player.seek(value);
@@ -110,6 +142,17 @@ class VideoController {
         };
         // change the global muted state
         this.controlerMuted = !this.controlerMuted;
+        // mute the teacher
+        this.teacher_audio.setMute(true);
+    }
+    onlyTeacherSound() {
+        this.controlerMuted = true;
+        for (const player of this.players) {
+            try {
+                player.setMute(this.controlerMuted);
+            } catch (e) { }
+        };
+        this.teacher_audio.setMute(false);
     }
     forward10() {
         this.globalTime += 10;
@@ -118,18 +161,21 @@ class VideoController {
                 player.seek(this.globalTime);
             } catch (e) { }
         };
+        this.teacher_audio.seek(this.globalTime);
     }
     backward10() {
         if (this.globalTime <= 10) {
             this.globalTime = 0;
         } else {
             this.globalTime -= 10;
+            console.log('called on init')
         }
         for (const player of this.players) {
             try {
                 player.seek(this.globalTime);
             } catch (e) { }
         };
+        this.teacher_audio.seek(this.globalTime);
     }
     getVideoAdvancePercentage() {
 
