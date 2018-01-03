@@ -1,8 +1,8 @@
 // TODOL: Here we load the players and the elements
-import VideoController from 'custom_player.js';
+// import VideoController from '../custom_player.js';
 
 const controler = new VideoController();
-let url = "videos/manifest.mpd";
+let url = "manifest.mpd";
 
 console.log(controler.players)
 

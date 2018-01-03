@@ -136,5 +136,5 @@ class VideoController {
     }
 };
 
-
-export default class VideoController{}
+console.log('videoController loaded')
+// export default class VideoController{}
