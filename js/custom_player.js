@@ -2,7 +2,7 @@
 
 js class to controll the video players
 Add all the hmtl dinamically with js so it can be 
-the MainAudio audio should controll the global state of the video player
+the MainAudio audio should control the global state of the video player
     - duration
     - autoplay
     
@@ -60,6 +60,8 @@ class VideoController {
         };
     }
 
+    // AVAILABLE METHODS GO BEYOND THIS LINE     
+
     /**
      * Calculate the duration of the video in function of the initial values
      * @returns {number} the duration of the VideoController
@@ -72,6 +74,15 @@ class VideoController {
         }
     }
 
+    /**
+     * get the reference time for all the players
+     * 
+     * @returns {number} the reference time 
+     */
+    getTime() {
+       return this.mainAudio.time();
+    }
+    
     /**
      * Remove the media source from a video
      * 

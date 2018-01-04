@@ -123,9 +123,8 @@ window.addEventListener("keydown", function (event) {
 
 function watchers() {
     document.getElementById('timeSpan').innerText = 
-        `${controler.mainAudio.time() - start_time}/${fake_duration}`;
-    controler.globalTime = controler.mainAudio.time();
-    
+        `${controler.getTime() - start_time}/${fake_duration}`;
+    controler.globalTime = controler.getTime();
 }
 
 document.getElementById('playButton').addEventListener('click', function (e) {
