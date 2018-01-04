@@ -12,7 +12,7 @@ let url1 = "lesson1/171016_Seelscheid_Doppelstunde_lehrercam-1280x720_h264_manif
 let url2 = "lesson1/171016_Seelscheid_Doppelstunde_matheecke-1280x720_h264_manifest.mpd";
 let url3 = "lesson1/171016_Seelscheid_Doppelstunde_TG_1_a-1280x720_h264_manifest.mpd";
 let url4 = "lesson1/171016_Seelscheid_Doppelstunde_TG_2_a-1280x720_h264_manifest.mpd";
-let audio_url = 'lesson1/teacher_audio.mpd';
+let audio_url = 'lesson1/mainAudio.mpd';
 let start_time = 2000;
 let finish_time = 10000;
 let fake_duration = finish_time - start_time
@@ -52,7 +52,7 @@ function initialLoad() {
     // console.log(url1)
     // console.log(document.querySelector(`#video1`))
     controler.init();
-    controler.addTeacherAudio(audio_url)
+    controler.addMainAudio(audio_url)
     // console.log(controler.players)
     console.log('1 - initial load')
 }
@@ -123,39 +123,33 @@ window.addEventListener("keydown", function (event) {
 
 function watchers() {
     document.getElementById('timeSpan').innerText = 
-        `${controler.teacher_audio.time() - start_time}/${fake_duration}`;
-    controler.globalTime = controler.teacher_audio.time();
+        `${controler.mainAudio.time() - start_time}/${fake_duration}`;
+    controler.globalTime = controler.mainAudio.time();
     
 }
 
 document.getElementById('playButton').addEventListener('click', function (e) {
-    console.log('played')
     controler.tooglePlay();
     e.stopImmediatePropagation();
 
 }, false)
+
 document.getElementById('muteButton').addEventListener('click', function (e) {
-    console.log('played')
     controler.toogleGlobalMute();
     e.stopImmediatePropagation();
-
 }, false) 
 
-document.getElementById('muteTeacherButton').addEventListener('click', function (e) {
-    console.log('played')
-    controler.onlyTeacherSound();
+document.getElementById('muteMainAudioButton').addEventListener('click', function (e) {
+    controler.onlyMainAudio();
     e.stopImmediatePropagation();
-
 }, false) 
+
 // add videos manually
 document.getElementById('add1').addEventListener('click', function (e) {
     controler.setSource(0,url1);   
 },false)
 document.getElementById('add2').addEventListener('click', function (e) {
     controler.setSource(1, url2);
-    // console.log('source 1 readded')
-    console.log(url2)
-    console.log(controler.players)
 }, false)
 document.getElementById('add3').addEventListener('click', function (e) {
     controler.setSource(2, url3);
@@ -182,8 +176,16 @@ window.setInterval(function() {
     ,1000);
 
 
+/**
+ * 
+ * @param {*} x 
+ * @param {*} ele_x 
+ * @param {*} ele_width 
+ */
 let getWidthAdvancePercentage = (x, ele_x, ele_width) => { return (x - ele_x) / ele_width };
-
+/**
+ * 
+ */
 document.getElementById('prog').addEventListener('click', function(e) {
     // get html elements
     let bar_element = document.getElementById('prog');

@@ -2,7 +2,7 @@
 
 js class to controll the video players
 Add all the hmtl dinamically with js so it can be 
-the teacher audio should controll the global state of the video player
+the MainAudio audio should controll the global state of the video player
     - duration
     - autoplay
     
@@ -32,7 +32,7 @@ class VideoController {
         endTime = null,
         controlerPlaying = false) {
         this.players = [];
-        this.teacher_audio = null;
+        this.mainAudio = null;
         this.root_name = root_name;
         this.globalTime = globalTime;
         this.startTime = startTime;
@@ -48,8 +48,8 @@ class VideoController {
     init() {
         // create and append the video elements on the root element
         // teache audio
-        this.teacher_audio = dashjs.MediaPlayer().create();
-        this.teacher_audio.on('canPlay',function () {
+        this.mainAudio = dashjs.MediaPlayer().create();
+        this.mainAudio.on('canPlay',function () {
             this.isReady = true
         }.bind(this));
         this.canPlayCount += 1;
@@ -66,7 +66,7 @@ class VideoController {
      */
     duration() {
         if (this.endTime == null) {
-            return this.teacher_audio.duration() - this.startTime
+            return this.mainAudio.duration() - this.startTime
         } else {
             return this.endTime - this.startTime
         }
@@ -93,16 +93,16 @@ class VideoController {
     }
 
     /**
-     * get the html audio element for the teacher,
+     * get the html audio element for the MainAudio,
      * initialize and loads the media source from the url.
      * 
      * @param {string} url to the media source
      */
-    addTeacherAudio(url) {
+    addMainAudio(url) {
         
-        let html_vid_element = document.querySelector(`#teacherAudio`)
+        let html_vid_element = document.querySelector(`#mainAudio`)
         console.log(html_vid_element)
-        this.teacher_audio.initialize(html_vid_element,url,false);
+        this.mainAudio.initialize(html_vid_element,url,false);
     }
     /**
      * get the html video element for the selected slot,
@@ -123,7 +123,7 @@ class VideoController {
      * Pause all the active players
      */
     pause() {
-        this.teacher_audio.pause();
+        this.mainAudio.pause();
 
         for (const player of this.players) {
             try {
@@ -139,12 +139,12 @@ class VideoController {
         // set state of the players to the controlerPlaying state
         if (!this.controlerPlaying) {
             try {
-                this.teacher_audio.play();
+                this.mainAudio.play();
             } catch (e) { }
         } else {
 
             try {
-                this.teacher_audio.pause();
+                this.mainAudio.pause();
             } catch (e) { }
         }
         for (const player of this.players) {
@@ -168,7 +168,7 @@ class VideoController {
      * @param {number} value 
      */
     seek(value) {
-        this.teacher_audio.seek(value);
+        this.mainAudio.seek(value);
         for (const player of this.players) {
             try {
                 player.seek(value);
@@ -188,21 +188,21 @@ class VideoController {
         };
         // change the global muted state
         this.controllerMuted = !this.controllerMuted;
-        // mute the teacher
-        this.teacher_audio.setMute(true);
+        // mute the MainAudio
+        this.mainAudio.setMute(true);
     }
 
     /**
      * Unmute the main audio and mute every other player
      */
-    onlyTeacherSound() {
+    onlyMainAudio() {
         this.controllerMuted = true;
         for (const player of this.players) {
             try {
                 player.setMute(this.controllerMuted);
             } catch (e) { }
         };
-        this.teacher_audio.setMute(false);
+        this.mainAudio.setMute(false);
     }
 
     /**
@@ -215,7 +215,7 @@ class VideoController {
                 player.seek(this.globalTime);
             } catch (e) { }
         };
-        this.teacher_audio.seek(this.globalTime);
+        this.mainAudio.seek(this.globalTime);
     }
 
     /**
@@ -233,7 +233,7 @@ class VideoController {
                 player.seek(this.globalTime);
             } catch (e) { }
         };
-        this.teacher_audio.seek(this.globalTime);
+        this.mainAudio.seek(this.globalTime);
     }
     /**
      * get the advance percentaje based in the predefined duration of the videos.
