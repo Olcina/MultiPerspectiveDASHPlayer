@@ -14,15 +14,29 @@ let url3 = "lesson1/171016_Seelscheid_Doppelstunde_TG_1_a-1280x720_h264_manifest
 let url4 = "lesson1/171016_Seelscheid_Doppelstunde_TG_2_a-1280x720_h264_manifest.mpd";
 let audio_url = 'lesson1/teacher_audio.mpd';
 let start_time = 2000;
-let finish_time = 1000;
+let finish_time = 10000;
+let fake_duration = finish_time - start_time
+// add media fragments #t=[start_time][,end_time]
+// this way we only need to worry about stop the video when the finish time is reached
+url1 = url1 + `#t=${start_time},${finish_time}`
+url2 = url2 + `#t=${start_time},${finish_time}`
+url3 = url3 + `#t=${start_time},${finish_time}`
+url4 = url4 + `#t=${start_time},${finish_time}`
+audio_url = audio_url + `#t=${start_time},${finish_time}`
 
-const controler = new VideoController(globalTime=start_time);
+
+
+const controler = new VideoController(startTime = start_time, endTime = finish_time);
 
 
 console.log(controler.players)
 
 // call load videos when document == ready
-ready().then(loadVideos);
+ready().
+then(initialLoad).
+then(getDuration).
+then(addVideos).
+then(getInitialTime);
 // create the ready promise
 function ready() {
     return new Promise(function (resolve) {
@@ -33,19 +47,32 @@ function ready() {
         }
     });
 }
-
-function loadVideos() {
-    console.log(controler)
-    console.log(url1)
-    console.log(document.querySelector(`#video1`))
+function initialLoad() {
+    // console.log(controler)
+    // console.log(url1)
+    // console.log(document.querySelector(`#video1`))
     controler.init();
+    controler.addTeacherAudio(audio_url)
+    // console.log(controler.players)
+    console.log('1 - initial load')
+}
+
+function getDuration() {
+    controler.duration()
+    console.log('2 - get duration')
+}
+
+function addVideos() {
     controler.add(0, url1)
     controler.add(1, url2)
     controler.add(2, url3)
     controler.add(3, url4)
-    controler.addTeacherAudio(audio_url)
-    controler.seek(start_time)
-    console.log(controler.players)
+    console.log('3 - added videos')
+}
+
+function getInitialTime() {
+    // controler.seek(start_time)
+    console.log('4 - initial time')
 }
 
 
@@ -95,7 +122,8 @@ window.addEventListener("keydown", function (event) {
 
 
 function watchers() {
-    document.getElementById('timeSpan').innerText = `${controler.teacher_audio.time()}/${controler.teacher_audio.duration()}`
+    document.getElementById('timeSpan').innerText = 
+        `${controler.teacher_audio.time() - start_time}/${fake_duration}`;
     controler.globalTime = controler.teacher_audio.time();
     
 }
