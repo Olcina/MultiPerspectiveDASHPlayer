@@ -217,10 +217,11 @@ class VideoController {
     }
 
     /**
-     * seek forward 10 seconds for all players
+     * seek forward x seconds for all players
+     * @param {number} x 
      */
-    forward10() {
-        this.globalTime += 10;
+    seekForward(x) {
+        this.globalTime += x;
         for (const player of this.players) {
             try {
                 player.seek(this.globalTime);
@@ -230,14 +231,14 @@ class VideoController {
     }
 
     /**
-     * seek backwards 10 seconds for all players
+     * seek backwards x seconds for all players
+     * @param {number} x
      */
-    backward10() {
-        if (this.globalTime <= 10) {
+    seekBackward(x) {
+        if (this.globalTime <= x) {
             this.globalTime = 0;
         } else {
-            this.globalTime -= 10;
-            console.log('called on init')
+            this.globalTime -= x;
         }
         for (const player of this.players) {
             try {

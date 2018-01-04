@@ -100,11 +100,11 @@ window.addEventListener("keydown", function (event) {
         case "ArrowLeft":
             // Do something for "left arrow" key press.
 
-            controler.backward10();
+            controler.seekBackward(10);
             break;
         case "ArrowRight":
             // Do something for "right arrow" key press.
-            controler.forward10()
+            controler.seekForward(10)
             break;
         case " ":
             // Do something for "espace" key press.
