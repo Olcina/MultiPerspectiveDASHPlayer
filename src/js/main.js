@@ -143,7 +143,8 @@ document.getElementById('muteMainAudioButton').addEventListener('click', functio
     e.stopImmediatePropagation();
 }, false) 
 
-// add videos manually
+// add videos manually binders
+
 document.getElementById('add1').addEventListener('click', function (e) {
     controler.setSource(0,url1);   
 },false)
@@ -156,7 +157,7 @@ document.getElementById('add3').addEventListener('click', function (e) {
 document.getElementById('add4').addEventListener('click', function (e) {
     controler.setSource(3, url4);
 }, false)
-
+// remove event binders
 document.getElementById('remove1').addEventListener('click', function (e) {
     controler.remove(0);
 }, false)
@@ -169,11 +170,61 @@ document.getElementById('remove3').addEventListener('click', function (e) {
 document.getElementById('remove4').addEventListener('click', function (e) {
     controler.remove(3);
 }, false)
+// fullscreen event binders
+document.getElementById('fullscreen1').addEventListener('click', function (e) {
+    request_fullscreen(document.getElementById('video0'))
+}, false)
+document.getElementById('fullscreen2').addEventListener('click', function (e) {
+    request_fullscreen(document.getElementById('video1'))
+}, false)
 
+document.getElementById('fullscreen3').addEventListener('click', function (e) {
+    request_fullscreen(document.getElementById('video2'))
+}, false)
+
+document.getElementById('fullscreen4').addEventListener('click', function (e) {
+    request_fullscreen(document.getElementById('video3'))
+}, false)
+document.getElementById('fullscreen').addEventListener('click', function (e) {
+    request_fullscreen(document.getElementById('grid'))
+}, false)
 window.setInterval(function() {
         watchers();}
     ,1000);
 
+
+// TODO: Fullscreen
+function request_fullscreen(DOMobject) {
+    // if already full screen; exit
+    // else go fullscreen
+    if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+    ) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    } else {
+
+        if (DOMobject.requestFullscreen) {
+            DOMobject.requestFullscreen();
+        } else if (DOMobject.mozRequestFullScreen) {
+            DOMobject.mozRequestFullScreen();
+        } else if (DOMobject.webkitRequestFullscreen) {
+            DOMobject.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (DOMobject.msRequestFullscreen) {
+            DOMobject.msRequestFullscreen();
+        }
+    }
+}
 
 /**
  * 
