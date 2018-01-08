@@ -49,7 +49,7 @@ class VideoController {
      */
     init() {
         // create and append the video elements on the root element
-        // teache audio
+        // Main Audio
         this.mainAudio = dashjs.MediaPlayer().create();
         this.mainAudio.on('canPlay',function () {
             this.isReady = true
@@ -120,6 +120,7 @@ class VideoController {
      * get the advance percentaje based in the predefined duration of the videos.
      */
     getVideoAdvancePercentage() {
+
         return advance
     }
 
@@ -211,7 +212,12 @@ class VideoController {
      * @param {number} slot the slot number 
      * @param {string} url the media source url 
      */
+    // TODO : 1 - add the source in the right time, using media queries?
+    //        2 - wait until source is loaded an ready
+    //        3 - syncro with the current time 
     setSource(slot, url) {
+        // let buildedUrl = buildMediaQueryUrlSource(url,this.getTime());
+        // console.log(buildedUrl);
         this.players[slot].attachSource(url);
     }
 
@@ -263,6 +269,27 @@ class VideoController {
     }
 };
 
+// UTILS functions go here
+//  in the future this functions should live in a different file
+
+/**
+ * build an url with an inital and end time
+ * @param {string} url 
+ * @param {number} startTime 
+ * @param {number} finishTime 
+ * @returns {string} the builded url
+ */
+// TODO: case when finish time is undefineed
+//      error handling
+function buildMediaQueryUrlSource(url, startTime, finishTime) {
+    return url + `#t=${startTime},${finishTime}`
+}
+
+
+// TODO: seconds to 00:00:00 format. look for time js libss
+function name(params) {
+    
+}
 
 console.log('videoController loaded')
 // export default class VideoController{}
