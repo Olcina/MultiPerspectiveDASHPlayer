@@ -11,13 +11,29 @@ module.exports = function (grunt) {
                 src: 'src/<%= pkg.name %>.js',
                 dest: 'build/<%= pkg.name %>.min.js'
             }
+        },
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['env']
+            },
+            dist: {
+                files: [{
+                    "expand": true,
+                    "cwd": "src/",
+                    "src": ["**/*.js"],
+                    "dest": "build/",
+                    "ext": ".js"
+                }]
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-babel');
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s).
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['uglify','babel']);
 
 };

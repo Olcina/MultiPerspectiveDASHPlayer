@@ -18,7 +18,10 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^3.3.0",
+    "http-proxy-middleware": "^0.17.4",
     "uglify": "^0.1.5",
     "webpack": "^3.10.0"
   }
