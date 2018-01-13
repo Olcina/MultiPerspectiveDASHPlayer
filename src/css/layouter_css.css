@@ -1,0 +1,41 @@
+.hide {
+    display: none;    
+}
+
+/* grid css */
+.grid {
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 5;
+}
+
+/* layout classes */
+.onevideo {
+    grid-row: 1/3;
+    grid-column: 1/3;
+}
+.twovideos1 {
+    filter: blur(50%);
+    grid-row: 1;
+    transform: translate(50%);
+    
+}
+.twovideos2 {
+    grid-row: 2;
+    transform: translate(50%);
+}
+
+.treevideos1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.treevideos2 {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.treevideos3 {
+    grid-row: 2;
+    transform: translate(50%);
+}

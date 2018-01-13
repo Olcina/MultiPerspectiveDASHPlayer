@@ -11,6 +11,7 @@
         }
     </style> -->
     <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="layouter_css.css">
     <link rel="stylesheet" href="bootstrap.min.css">
 </head>
 
@@ -19,50 +20,50 @@
     <div class="container">
         <div class="grid" id="grid">
             
-                <div class="video1">
+                <div id="video1-container">
                     <div id="outer-box"> 
                         <video class="video-pos" id="video0"></video>
                         <div id="inner-box">
                             <div id="button-bar">
                                 <button>audio</button>
                                 <button id="fullscreen1">fullscreen</button>
-                                <button id="remove1">delete</button>
+                                <button id="remove1">remove</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="video2">
+                <div id="video2-container">
                     <div id="outer-box">
                         <video  class="video-pos" id="video1"></video>
                         <div id="inner-box">
                             <div id="button-bar">
                                 <button>audio</button>
                                 <button id="fullscreen2">fullscreen</button>
-                                <button id="remove2">delete</button>
+                                <button id="remove2">remove</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="video3">
+                <div id="video3-container">
                     <div id="outer-box">
                         <video  class="video-pos" id="video2"></video>
                         <div id="inner-box">
                             <div id="button-bar">
                                 <button>audio</button>
                                 <button id="fullscreen3">fullscreen</button>
-                                <button id="remove3">delete</button>
+                                <button id="remove3">remove</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="video4">
+                <div id="video4-container">
                     <div id="outer-box">
                         <video  class="video-pos" id="video3"></video>
                         <div id="inner-box">    
                             <div id="button-bar">
                                 <button>audio</button>
                                 <button id="fullscreen4">fullscreen</button>
-                                <button id="remove4">delete</button>
+                                <button id="remove4">remove</button>
                                 </div>
                         </div>
                     </div>
@@ -89,12 +90,12 @@
                 <button id="add3">add3</button>
                 <button id="add4">add4</button>
             </div>
-            <div class="removerContainer">
+            <!-- <div class="removerContainer">
                 <button id="remove1">remove1</button>
                 <button id="remove2">remove2</button>
                 <button id="remove3">remove3</button>
                 <button id="remove4">remove4</button>
-            </div>
+            </div> -->
             <div class="sidebar">Sidebar</div>
         </div>
     </div>
@@ -102,6 +103,7 @@
     <script src="jquery-3.2.1.js"></script>
     <script src="bootstrap.js"></script>
     <script src="dash.all.min.js"></script>
+    <!-- <script src="layouter.js"></script> -->
     <script src="custom_player.js"></script>
     <script src="main.js"></script>
 
