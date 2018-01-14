@@ -3,18 +3,24 @@
 // const globby = require('globby')
 /*
 DATABASE MOCKUP
-urls for the lessons
+urls for the videos in the  set
 start and finish time
 
-
 */
-let url1 = "lesson1/171016_Seelscheid_Doppelstunde_lehrercam-1280x720_h264_manifest.mpd";
-let url2 = "lesson1/171016_Seelscheid_Doppelstunde_matheecke-1280x720_h264_manifest.mpd";
-let url3 = "lesson1/171016_Seelscheid_Doppelstunde_TG_1_a-1280x720_h264_manifest.mpd";
-let url4 = "lesson1/171016_Seelscheid_Doppelstunde_TG_2_a-1280x720_h264_manifest.mpd";
-let audio_url = 'lesson1/mainAudio.mpd';
-let start_time = 2000;
+let url1 = "bunny_manifest.mpd";
+let url2 = "bunny_manifest.mpd";
+let url3 = "bunny_manifest.mpd";
+let url4 = "bunny_manifest.mpd";
+let audio_url = 'bunny_manifest.mpd';
+let start_time = 0;
 let finish_time = 10000;
+// TODO:
+/**
+ * category tagging 
+ * description
+ * video set name name
+ * 
+ */
 let fake_duration = finish_time - start_time
 // add media fragments #t=[start_time][,end_time]
 // this way we only need to worry about stop the video when the finish time is reached
@@ -24,10 +30,8 @@ url3 = url3 + `#t=${start_time},${finish_time}`
 url4 = url4 + `#t=${start_time},${finish_time}`
 audio_url = audio_url + `#t=${start_time},${finish_time}`
 
-
-
 const controler = new VideoController(startTime = start_time, endTime = finish_time);
-
+const layout = new Layouter();
 
 console.log(controler.players)
 
@@ -67,6 +71,7 @@ function addVideos() {
     controler.add(1, url2)
     controler.add(2, url3)
     controler.add(3, url4)
+    refreshLayout(layout, controler)
     console.log('3 - added videos')
 }
 
@@ -84,16 +89,23 @@ window.addEventListener("keydown", function (event) {
     switch (event.key) {
         case '0':
             controler.add(0, url)
+            refreshLayout(layout, controler)
             break;
         case '1':
             controler.add(1, url)
+            refreshLayout(layout, controler)
             break;
         case '2':
             controler.add(2, url)
+            refreshLayout(layout, controler)
             break;
         case '3':
             controler.add(3, url)
+            refreshLayout(layout, controler)
             break;
+        case 's':
+            console.log(controler.getPlayerStatus());
+            
         case 'm':
             controler.toogleGlobalMute();
             break;
@@ -146,29 +158,37 @@ document.getElementById('muteMainAudioButton').addEventListener('click', functio
 // add videos manually binders
 
 document.getElementById('add1').addEventListener('click', function (e) {
-    controler.setSource(0,url1);   
+    controler.setSource(0,url1);  
+    refreshLayout(layout, controler) 
 },false)
 document.getElementById('add2').addEventListener('click', function (e) {
     controler.setSource(1, url2);
+    refreshLayout(layout, controler)
 }, false)
 document.getElementById('add3').addEventListener('click', function (e) {
     controler.setSource(2, url3);
+    refreshLayout(layout, controler)
 }, false)
 document.getElementById('add4').addEventListener('click', function (e) {
     controler.setSource(3, url4);
+    refreshLayout(layout, controler)
 }, false)
 // remove event binders
 document.getElementById('remove1').addEventListener('click', function (e) {
     controler.remove(0);
+    refreshLayout(layout, controler)
 }, false)
 document.getElementById('remove2').addEventListener('click', function (e) {
     controler.remove(1);
+    refreshLayout(layout, controler)
 }, false)
 document.getElementById('remove3').addEventListener('click', function (e) {
     controler.remove(2);
+    refreshLayout(layout, controler)
 }, false)
 document.getElementById('remove4').addEventListener('click', function (e) {
     controler.remove(3);
+    refreshLayout(layout, controler)
 }, false)
 // fullscreen event binders
 document.getElementById('fullscreen1').addEventListener('click', function (e) {
@@ -255,4 +275,9 @@ document.getElementById('prog').addEventListener('click', function(e) {
     // get only one click at a time
     e.stopImmediatePropagation();
 })
+
+
+function refreshLayout(layout,controler) {
+    layout.setLayout(controler.getPlayerStatus())
+}
 

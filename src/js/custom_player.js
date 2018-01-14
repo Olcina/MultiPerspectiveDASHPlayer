@@ -30,7 +30,7 @@ class VideoController {
         controllerPlaying = false,
         endTime = null,
         globalTime = 0,
-        startTime = 0,
+        startTime = 0
         ) {
         this.canPlayCount = 0;
         this.controllerMuted = controllerMuted;
@@ -41,6 +41,8 @@ class VideoController {
         this.players = [];
         this.root_name = root_name;
         this.startTime = startTime;
+        this.activePlayers = 0;
+        this.playerStatus = [false,false,false,false]
         // this.init();
     }
     /**
@@ -62,8 +64,8 @@ class VideoController {
         };
     }
 
-    // AVAILABLE METHODS GO BEYOND THIS LINE     
-
+    // AVAILABLE METHODS GO BEYOND THIS LINE  
+    
     /**
      * get the html video element for the selected slot,
      * initialize and load the media source from the url.
@@ -72,6 +74,7 @@ class VideoController {
      */
     // TODO : raise error when video element with id='video{slot}' doesn't exist 
     add(slot, url) {
+
         let html_vid_element = document.querySelector(`#video${slot}`)
         this.players[slot].initialize(html_vid_element, url, false)
         return new Promise((resolve, reject) => {
@@ -151,13 +154,26 @@ class VideoController {
     }
 
     /**
+     * Analize the status of the players, returns an boolean array wiht the status of the videos
+     */
+    getPlayerStatus() {
+        let i = 0
+        for (const player of this.players) {
+            console.log(this.playerStatus)
+            this.playerStatus[i] = player.isReady()
+            i += 1
+            console.log(this.playerStatus, i)
+        }
+        return this.playerStatus
+    }
+    /**
      * Remove the media source from a video
      * 
      * @param {number} slot the slot number to be removed
      */
     remove(slot) {
-        this.players[slot].attachSource('');
-        console.log(`slot${slot} reseted`)
+        let ele = this.players[slot];
+        ele.attachSource('');
     }
 
 
@@ -247,7 +263,6 @@ class VideoController {
                 this.mainAudio.play();
             } catch (e) { }
         } else {
-
             try {
                 this.mainAudio.pause();
             } catch (e) { }
@@ -258,7 +273,6 @@ class VideoController {
                     player.play();
                 } catch (e) { }
             } else {
-
                 try {
                     player.pause();
                 } catch (e) { }
@@ -287,9 +301,15 @@ function buildMediaQueryUrlSource(url, startTime, finishTime) {
 
 
 // TODO: seconds to 00:00:00 format. look for time js libss
-function name(params) {
+// function name(params) {
+    
+// }
+
+// console.log('videoController loaded')
+// export class VideoController{}
+
+
+function log_length(arr) {
+    console.log(arr.length)
     
 }
-
-console.log('videoController loaded')
-// export default class VideoController{}

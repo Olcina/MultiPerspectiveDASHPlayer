@@ -19,36 +19,74 @@ class Layouter{
         this.player2 = document.getElementById('video2-container');
         this.player3 = document.getElementById('video3-container');
         this.player4 = document.getElementById('video4-container');
-        console.log(this.player2);
-        console.log(this.player3);
-        console.log(this.player4);
+        this.players = [this.player1,
+                        this.player2,
+                        this.player3,
+                        this.player4]
+        console.log(this.players)
     }
     
-    setOneVideoLayout() {
-        console.log(this);
-        document.getElementById('video1-container').className = 'onevideo'
-        this.player2.className = 'hide'
-        this.player3.className = 'hide'
-        this.player4.className = 'hide'
-    }
-    setTwoVideoLayout() {
-        this.player1.className = 'twoVideos1'
-        this.player2.className = 'twoVideos2'
-        this.player3.className = 'hide'
-        this.player4.className = 'hide'
-    }
-    setTreeVideoLayout() {
-        this.player1.className = 'treevideos1'
-        this.player2.className = 'treevideos2'
-        this.player3.className = 'treevideos3'
-        this.player4.className = 'hide'
-    }
-    setFourVideoLayout() {
-        this.player1.className = ' '
-        this.player2.className = ' '
-        this.player3.className = ' '
-        this.player4.className = ' '
+    setLayout(playerStatus) {
+        let indexToShow = new Array()
+        let indexToHide = new Array()
+        let counter = 0
+        for (const pl of playerStatus) {
+            if (pl==true){
+                indexToShow.push(counter)
+            } else {
+                indexToHide.push(counter)
+            }
+            counter += 1
+        }
+        switch (indexToShow.length) {
+            case 1:
+                this.setOneVideoLayout(indexToShow, indexToHide)
+                break
+            case 2:
+                this.setTwoVideoLayout(indexToShow, indexToHide)
+                break
+            case 3:
+                this.setTreeVideoLayout(indexToShow, indexToHide)
+                break
+            case 4:
+                this.setFourVideoLayout(indexToShow, indexToHide)
+                break
+            default:
+                console.log('error')
+                return;
+            }
+
     }
 
-
+    setOneVideoLayout(indexToShow, indexToHide) {
+        this.players[indexToShow[0]].className = 'onevideo'
+        this.players[indexToHide[0]].className = 'hide'
+        this.players[indexToHide[1]].className = 'hide'
+        this.players[indexToHide[2]].className = 'hide'
+    }
+    setTwoVideoLayout(indexToShow, indexToHide) {
+        this.players[indexToShow[0]].className = 'twovideos1'
+        this.players[indexToShow[1]].className = 'twovideos2'
+        this.players[indexToHide[0]].className = 'hide'
+        this.players[indexToHide[1]].className = 'hide'
+    }
+    setTreeVideoLayout(indexToShow, indexToHide) {
+        this.players[indexToShow[0]].className = 'treevideos1'
+        this.players[indexToShow[1]].className = 'treevideos2'
+        this.players[indexToShow[2]].className = 'treevideos3'
+        this.players[indexToHide[0]].className = 'hide'
+    }
+    setFourVideoLayout(indexToShow, indexToHide) {
+        this.players[indexToShow[0]].className = ' '
+        this.players[indexToShow[1]].className = ' '
+        this.players[indexToShow[2]].className = ' '
+        this.players[indexToShow[3]].className = ' '
+    }
 }
+
+// function getIndexArray(element,index,array) {
+//     let indexArray = new Array()
+//     indexArray.push(index)
+//     console.log(index)
+//     return indexArray
+// }
