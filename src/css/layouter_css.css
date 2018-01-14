@@ -1,9 +1,10 @@
 .hide {
-    display: none;    
+    display: none; 
 }
 
 /* grid css */
 .grid {
+    width: inherit;
     display: grid;
     grid-template-columns: 3;
     grid-template-rows: 5;

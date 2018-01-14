@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css.css">
     <link rel="stylesheet" href="layouter_css.css">
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -18,10 +19,11 @@
                     <div id="outer-box"> 
                         <video class="video-pos" id="video0"></video>
                         <div id="inner-box">
+                            <img src="https://dummyimage.com/600x400/000/fff&text=Video1" alt="overlayImage">
                             <div id="button-bar">
-                                <button>audio</button>
-                                <button id="fullscreen1">fullscreen</button>
-                                <button id="remove1">remove</button>
+                                <i class="material-icons">mic</i>
+                                <i id="fullscreen1" class="material-icons">fullscreen</i>
+                                <i id="remove1" class="material-icons">clear</i>
                             </div>
                         </div>
                     </div>
@@ -30,10 +32,11 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video1"></video>
                         <div id="inner-box">
+                            <img src="https://dummyimage.com/600x400/000/fff&text=Video2" alt="overlayImage">
                             <div id="button-bar">
-                                <button>audio</button>
-                                <button id="fullscreen2">fullscreen</button>
-                                <button id="remove2">remove</button>
+                                <i class="material-icons">mic</i>
+                                <i id="fullscreen2" class="material-icons">fullscreen</i>
+                                <i id="remove2" class="material-icons">clear</i>
                             </div>
                         </div>
                     </div>
@@ -42,10 +45,11 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video2"></video>
                         <div id="inner-box">
+                            <img src="https://dummyimage.com/600x400/000/fff&text=Video3" alt="overlayImage">
                             <div id="button-bar">
-                                <button>audio</button>
-                                <button id="fullscreen3">fullscreen</button>
-                                <button id="remove3">remove</button>
+                                <i class="material-icons">mic</i>
+                                <i id="fullscreen3" class="material-icons">fullscreen</i>
+                                <i id="remove3" class="material-icons">clear</i>
                             </div>
                         </div>
                     </div>
@@ -54,28 +58,29 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video3"></video>
                         <div id="inner-box">    
+                            <img src="https://dummyimage.com/600x400/000/fff&text=Video4" alt="overlayImage">
                             <div id="button-bar">
-                                <button>audio</button>
-                                <button id="fullscreen4">fullscreen</button>
-                                <button id="remove4">remove</button>
+                                <i class="material-icons">mic</i>
+                                <i id="fullscreen4" class="material-icons">fullscreen</i>
+                                <i id="remove4" class="material-icons">clear</i>
                                 </div>
                         </div>
                     </div>
                 </div>
 
             <div class="barContainer">
-                <button id="playButton">Play</button>
-                <button id="timeSpan"></button>
-                        <div class="container">
-                            <div class="progress" id='prog'>
+                <i id="playButton" class="material-icons">play_circle_filled</i>
+                <i id="fullscreen" class="material-icons">fullscreen</i>
+                <i id="muteButton" class="material-icons">mic_off</i>
+                <i id="muteMainAudioButton" class="material-icons">record_voice_over</i>
+                <div class="container">
+                    <div class="progress" id='prog'>
                         <div  class="progress-bar" id='prog2' role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                             <span class="sr-only">70% Complete</span>
                         </div>
                     </div>
                 </div>
-                        <button id="fullscreen">Fullscreen</button>
-                        <button id="muteButton">Mute</button>
-                        <button id="muteMainAudioButton">Only MainAudio Sound</button>
+                <i id="timeSpan"></i>
             </div>
 
             <div class="selectorContainer">
@@ -90,7 +95,7 @@
                 <button id="remove3">remove3</button>
                 <button id="remove4">remove4</button>
             </div> -->
-            <div class="sidebar">Sidebar</div>
+            <!-- <div class="sidebar">Sidebar</div> -->
         </div>
     </div>
 

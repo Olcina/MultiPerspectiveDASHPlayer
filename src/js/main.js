@@ -11,7 +11,7 @@ let url1 = "bunny_manifest.mpd";
 let url2 = "bunny_manifest.mpd";
 let url3 = "bunny_manifest.mpd";
 let url4 = "bunny_manifest.mpd";
-let audio_url = 'bunny_manifest.mpd';
+let audio_url = 'mainAudio.mpd';
 let start_time = 0;
 let finish_time = 10000;
 // TODO:
@@ -137,6 +137,7 @@ function watchers() {
     document.getElementById('timeSpan').innerText = 
         `${controler.getTime() - start_time}/${fake_duration}`;
     controler.globalTime = controler.getTime();
+    console.log('working')
 }
 
 document.getElementById('playButton').addEventListener('click', function (e) {
