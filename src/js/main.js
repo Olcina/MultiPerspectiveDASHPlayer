@@ -137,6 +137,7 @@ function watchers() {
     document.getElementById('timeSpan').innerText = 
         `${controler.getTime() - start_time}/${fake_duration}`;
     controler.globalTime = controler.getTime();
+    refreshTimeBar();
     console.log('working')
 }
 
@@ -276,6 +277,26 @@ document.getElementById('prog').addEventListener('click', function(e) {
     // get only one click at a time
     e.stopImmediatePropagation();
 })
+
+
+function refreshTimeBar() {
+    // get html elements
+    let bar_element = document.getElementById('prog');
+    let bar_filler = document.getElementById('prog2');
+    let ele_x = bar_element.getBoundingClientRect()['left'];
+    let ele_width = bar_element.getBoundingClientRect()['width'];
+    let time = controler.getTime();
+    let duration = controler.duration();
+
+    let percentage = time / (duration) 
+
+    bar_filler.style = `width:${percentage * 100}%`
+
+    console.log(percentage)
+    console.log(controler.getTime())
+    console.log(controler.duration())
+
+}
 
 
 function refreshLayout(layout,controler) {
