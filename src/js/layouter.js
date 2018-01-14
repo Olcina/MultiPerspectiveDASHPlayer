@@ -82,6 +82,14 @@ class Layouter{
         this.players[indexToShow[2]].className = ' '
         this.players[indexToShow[3]].className = ' '
     }
+
+    playButton(playing) {
+        if (playing==true) {
+            document.getElementById('playButton').innerText = 'pause_circle_filled'
+        } else {
+            document.getElementById('playButton').innerText = 'play_circle_filled'
+        }
+    }
 }
 
 // function getIndexArray(element,index,array) {

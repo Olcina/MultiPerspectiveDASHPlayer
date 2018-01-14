@@ -121,6 +121,7 @@ window.addEventListener("keydown", function (event) {
         case " ":
             // Do something for "espace" key press.
             controler.tooglePlay();
+            layout.playButton(controler.controllerPlaying);
             break;
         default:
             console.log(event.key)
@@ -134,8 +135,10 @@ window.addEventListener("keydown", function (event) {
 
 
 function watchers() {
-    document.getElementById('timeSpan').innerText = 
-        `${controler.getTime() - start_time}/${fake_duration}`;
+    // TODO: format seconds function
+    // document.getElementById('timeSpan').innerText = 
+    //     `${controler.getTime() - start_time}/${fake_duration}`;
+    document.getElementById('timeSpan').innerText = "00:00:00/00:00:00"
     controler.globalTime = controler.getTime();
     refreshTimeBar();
     console.log('working')
@@ -159,22 +162,22 @@ document.getElementById('muteMainAudioButton').addEventListener('click', functio
 
 // add videos manually binders
 
-document.getElementById('add1').addEventListener('click', function (e) {
-    controler.setSource(0,url1);  
-    refreshLayout(layout, controler) 
-},false)
-document.getElementById('add2').addEventListener('click', function (e) {
-    controler.setSource(1, url2);
-    refreshLayout(layout, controler)
-}, false)
-document.getElementById('add3').addEventListener('click', function (e) {
-    controler.setSource(2, url3);
-    refreshLayout(layout, controler)
-}, false)
-document.getElementById('add4').addEventListener('click', function (e) {
-    controler.setSource(3, url4);
-    refreshLayout(layout, controler)
-}, false)
+// document.getElementById('add1').addEventListener('click', function (e) {
+//     controler.setSource(0,url1);  
+//     refreshLayout(layout, controler) 
+// },false)
+// document.getElementById('add2').addEventListener('click', function (e) {
+//     controler.setSource(1, url2);
+//     refreshLayout(layout, controler)
+// }, false)
+// document.getElementById('add3').addEventListener('click', function (e) {
+//     controler.setSource(2, url3);
+//     refreshLayout(layout, controler)
+// }, false)
+// document.getElementById('add4').addEventListener('click', function (e) {
+//     controler.setSource(3, url4);
+//     refreshLayout(layout, controler)
+// }, false)
 // remove event binders
 document.getElementById('remove1').addEventListener('click', function (e) {
     controler.remove(0);
@@ -302,4 +305,3 @@ function refreshTimeBar() {
 function refreshLayout(layout,controler) {
     layout.setLayout(controler.getPlayerStatus())
 }
-
