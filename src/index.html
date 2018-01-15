@@ -3,14 +3,33 @@
 
 <head>
     <title>Dash.js Rocks</title>
-
-    <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="layouter_css.css">
+    <!-- External CSS styling -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS styling -->
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="layouter_css.css">
+    <link rel="stylesheet" href="modalSelector.css">
+    <!-- <link rel="stylesheet" href="loader.css"> -->
+    
 </head>
 
 <body>
+    <!-- <div class="loader"></div> -->
+
+    <!-- Modal box for select the videos -->
+    <div id="modalSelector" class="modal">
+        <div class="modal-content">
+            <span class="closeModalButton"><i class="material-icons">clear</i></span>
+            <!-- This need to be loaded from the video library -->
+            <ul>
+                <li>Video1</li>
+                <li>Video2</li>
+                <li>Video3</li>
+            </ul>
+        </div>
+    
+    </div>
     <audio class="hidden" id="mainAudio"></audio>
     <div class="container">
         <div class="grid" id="grid">
@@ -83,32 +102,26 @@
                             <div id="myBar"></div>
                         </div> -->
                         <i id="timeSpan"></i>
-
                     </div>
             </div>
 
-            <!-- <div class="selectorContainer">
-                <button id="add1">add1</button>
-                <button id="add2">add2</button>
-                <button id="add3">add3</button>
-                <button id="add4">add4</button>
-            </div> -->
-            <!-- <div class="removerContainer">
-                <button id="remove1">remove1</button>
-                <button id="remove2">remove2</button>
-                <button id="remove3">remove3</button>
-                <button id="remove4">remove4</button>
-            </div> -->
-            <!-- <div class="sidebar">Sidebar</div> -->
         </div>
+        
     </div>
 
     <script src="jquery-3.2.1.js"></script>
     <script src="bootstrap.js"></script>
     <script src="dash.all.min.js"></script>
+    <!-- ES6 classes -->
     <script src="layouter.js"></script>
     <script src="custom_player.js"></script>
+    <!-- modal box for selection of perspectives -->
+    <script src="modalSelector.js"></script>
+    
+    <!-- main script for loading the videos -->
     <script src="main.js"></script>
+    <!-- keybindings for the user -->
+    <script src="keyBindings.js"></script>
 
 </body>
 
