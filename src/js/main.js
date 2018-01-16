@@ -5,8 +5,8 @@
 DATABASE MOCKUP
 urls for the videos in the  set
 start and finish time
-
 */
+
 let url1 = "bunny_manifest.mpd";
 let url2 = "bunny_manifest.mpd";
 let url3 = "bunny_manifest.mpd";
@@ -92,7 +92,6 @@ function watchers() {
     document.getElementById('timeSpan').innerText = "00:00:00/00:00:00"
     controler.globalTime = controler.getTime();
     refreshTimeBar();
-    console.log('working')
 }
 
 document.getElementById('playButton').addEventListener('click', function (e) {
@@ -245,11 +244,6 @@ function refreshTimeBar() {
     let percentage = time / (duration) 
 
     bar_filler.style = `width:${percentage * 100}%`
-
-    console.log(percentage)
-    console.log(controler.getTime())
-    console.log(controler.duration())
-
 }
 
 

@@ -3,6 +3,9 @@
 
 <head>
     <title>Dash.js Rocks</title>
+    <!-- service worker script -->
+    <script src="loadSW.js"></script>
+
     <!-- External CSS styling -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,14 +34,14 @@
     
     </div>
     <audio class="hidden" id="mainAudio"></audio>
-    <div class="container">
+    <div class="container" id="videoPlayerContainer">
         <div class="grid" id="grid">
             
                 <div id="video1-container">
                     <div id="outer-box"> 
                         <video class="video-pos" id="video0"></video>
                         <div id="inner-box">
-                            <img src="https://dummyimage.com/600x400/000/fff&text=Video1" alt="overlayImage">
+                            <img src="dummy1.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i class="material-icons">mic</i>
                                 <i id="fullscreen1" class="material-icons">fullscreen</i>
@@ -51,7 +54,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video1"></video>
                         <div id="inner-box">
-                            <img src="https://dummyimage.com/600x400/000/fff&text=Video2" alt="overlayImage">
+                            <img src="dummy2.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i class="material-icons">mic</i>
                                 <i id="fullscreen2" class="material-icons">fullscreen</i>
@@ -64,7 +67,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video2"></video>
                         <div id="inner-box">
-                            <img src="https://dummyimage.com/600x400/000/fff&text=Video3" alt="overlayImage">
+                            <img src="dummy3.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i class="material-icons">mic</i>
                                 <i id="fullscreen3" class="material-icons">fullscreen</i>
@@ -77,7 +80,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video3"></video>
                         <div id="inner-box">    
-                            <img src="https://dummyimage.com/600x400/000/fff&text=Video4" alt="overlayImage">
+                            <img src="dummy4.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i class="material-icons">mic</i>
                                 <i id="fullscreen4" class="material-icons">fullscreen</i>

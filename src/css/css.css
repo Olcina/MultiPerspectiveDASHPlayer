@@ -3,8 +3,10 @@
     width: 100%;
 }
 
-.body {
-    background: antiquewhite;
+body {
+    background-image: url('Background.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
 }
 
 i {
@@ -20,6 +22,10 @@ i {
 .container {
     /* max-width: 960px; */
     text-align: center;
+}
+
+#videoPlayerContainer{
+    top: 100px;
 }
 .btn {
     background-color: grey;
@@ -87,12 +93,12 @@ i {
 
 }
 
-#outer-box #inner-box #button-bar i {
-    /* position: absolute; */
-    /* top: 50%; */
-    /* margin: 0 auto; */
-    /* margin: 5%; */
-}
+/* #outer-box #inner-box #button-bar i {
+    position: absolute;
+    top: 50%;
+    margin: 0 auto;
+    margin: 5%;
+} */
 
 #outer-box #inner-box img {
     width:100%;
