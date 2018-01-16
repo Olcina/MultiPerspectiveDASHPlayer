@@ -151,6 +151,15 @@ document.getElementById('fullscreen').addEventListener('click', function (e) {
     request_fullscreen(document.getElementById('grid'))
 }, false)
 
+document.getElementById('forward10Button').addEventListener('click', function (e) {
+    controler.seekForward(10)
+}, false)
+
+
+document.getElementById('replay10Button').addEventListener('click', function (e) {
+    controler.seekBackward(10);
+}, false)
+
 document.getElementById('audio1').addEventListener('click', function (e) {
     let stat = controler.toogleIndividualMuteAudio(1)
     let ic = document.getElementById('audio1')

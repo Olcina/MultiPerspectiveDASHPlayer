@@ -115,6 +115,9 @@ i {
 opacity: 1;
 } */
 
+.container .flex-box {
+    background-color: white;
+}
 
 .flex-box {
     border: 2px solid rgba(136, 36, 36, 0.5);
