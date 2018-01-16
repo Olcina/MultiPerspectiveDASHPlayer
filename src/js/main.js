@@ -30,7 +30,7 @@ url3 = url3 + `#t=${start_time},${finish_time}`
 url4 = url4 + `#t=${start_time},${finish_time}`
 audio_url = audio_url + `#t=${start_time},${finish_time}`
 
-const controler = new VideoController(startTime = start_time, endTime = finish_time);
+const controler = new VideoController();
 const layout = new Layouter();
 
 console.log(controler.players)
@@ -71,7 +71,10 @@ function addVideos() {
     controler.add(1, url2)
     controler.add(2, url3)
     controler.add(3, url4)
+    // refresh the layout
     refreshLayout(layout, controler)
+    layout.muteButton(controler.controllerMuted);
+    layout.playButton(controler.controllerPlaying);
     console.log('3 - added videos')
 }
 
@@ -96,12 +99,14 @@ function watchers() {
 
 document.getElementById('playButton').addEventListener('click', function (e) {
     controler.tooglePlay();
+    layout.playButton(controler.controllerPlaying);
     e.stopImmediatePropagation();
 
 }, false)
 
 document.getElementById('muteButton').addEventListener('click', function (e) {
     controler.toogleGlobalMute();
+    layout.muteButton(controler.controllerMuted);
     e.stopImmediatePropagation();
 }, false) 
 
@@ -110,24 +115,6 @@ document.getElementById('muteMainAudioButton').addEventListener('click', functio
     e.stopImmediatePropagation();
 }, false) 
 
-// add videos manually binders
-
-// document.getElementById('add1').addEventListener('click', function (e) {
-//     controler.setSource(0,url1);  
-//     refreshLayout(layout, controler) 
-// },false)
-// document.getElementById('add2').addEventListener('click', function (e) {
-//     controler.setSource(1, url2);
-//     refreshLayout(layout, controler)
-// }, false)
-// document.getElementById('add3').addEventListener('click', function (e) {
-//     controler.setSource(2, url3);
-//     refreshLayout(layout, controler)
-// }, false)
-// document.getElementById('add4').addEventListener('click', function (e) {
-//     controler.setSource(3, url4);
-//     refreshLayout(layout, controler)
-// }, false)
 // remove event binders
 document.getElementById('remove1').addEventListener('click', function (e) {
     controler.remove(0);
@@ -163,6 +150,47 @@ document.getElementById('fullscreen4').addEventListener('click', function (e) {
 document.getElementById('fullscreen').addEventListener('click', function (e) {
     request_fullscreen(document.getElementById('grid'))
 }, false)
+
+document.getElementById('audio1').addEventListener('click', function (e) {
+    let stat = controler.toogleIndividualMuteAudio(1)
+    let ic = document.getElementById('audio1')
+    if (stat == false) {
+        ic.innerText = 'mic'
+    } else {
+        ic.innerText = 'mic_off'
+    }
+}, false)
+document.getElementById('audio2').addEventListener('click', function (e) {
+    let stat = controler.toogleIndividualMuteAudio(2)
+    let ic = document.getElementById('audio2')
+    if (stat == false) {
+        ic.innerText = 'mic'
+    } else {
+        ic.innerText = 'mic_off'
+    }
+}, false)
+
+document.getElementById('audio3').addEventListener('click', function (e) {
+    let stat = controler.toogleIndividualMuteAudio(3)
+    let ic = document.getElementById('audio3')
+    if (stat == false) {
+        ic.innerText = 'mic'
+    } else {
+        ic.innerText = 'mic_off'
+    }
+}, false)
+
+document.getElementById('audio4').addEventListener('click', function (e) {
+    let stat = controler.toogleIndividualMuteAudio(4)
+    let ic = document.getElementById('audio4')
+    if (stat == false) {
+        ic.innerText = 'mic'
+    } else {
+        ic.innerText = 'mic_off'
+    }
+}, false)
+
+
 window.setInterval(function() {
         watchers();}
     ,1000);

@@ -23,6 +23,7 @@ window.addEventListener("keydown", function (event) {
             modal.style.display = "block";
         case 'm':
             controler.toogleGlobalMute();
+            layout.muteButton(controler.controllerMuted);
             break;
         case "ArrowLeft":
             // Do something for "left arrow" key press.

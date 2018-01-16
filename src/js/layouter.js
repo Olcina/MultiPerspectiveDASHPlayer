@@ -90,6 +90,14 @@ class Layouter{
             document.getElementById('playButton').innerText = 'play_circle_filled'
         }
     }
+    muteButton(muted) {
+        if (muted == true) {
+            document.getElementById('muteButton').innerText = 'mic_off'
+        } else {
+            document.getElementById('muteButton').innerText = 'mic'
+        }
+    }
+
 }
 
 // function getIndexArray(element,index,array) {

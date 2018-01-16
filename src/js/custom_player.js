@@ -8,7 +8,6 @@ the MainAudio audio should control the global state of the video player
     
 when a video is added we should call seek for the video when is ready
 using a promise call
-
 */
 
 /**
@@ -26,7 +25,7 @@ class VideoController {
      * @param {boolean} controllerPlaying 
      */
     constructor(root_name = 'root',
-        controllerMuted = true,
+        controllerMuted = false,
         controllerPlaying = false,
         endTime = null,
         globalTime = 0,
@@ -235,6 +234,24 @@ class VideoController {
         // let buildedUrl = buildMediaQueryUrlSource(url,this.getTime());
         // console.log(buildedUrl);
         this.players[slot].attachSource(url);
+    }
+
+    
+    /**
+     * Toogle the video audio status between mute/unmute
+     * 
+     * @param {number} slot - the position of the video in the layout
+     * @returns {boolean} - the final status of the video
+     */
+    toogleIndividualMuteAudio(slot) {
+        let selectedPlayer = this.players[slot-1]
+        if (selectedPlayer.isMuted()) {
+            selectedPlayer.setMute(false);
+            return false
+        } else {
+            selectedPlayer.setMute(true);
+            return true
+        }
     }
 
     /**
