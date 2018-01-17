@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Dash.js Rocks</title>
+    <!-- service worker script -->
+    <script src="loadSW.js"></script>
+
+    <!-- External CSS styling -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS styling -->
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="layouter_css.css">
+    <link rel="stylesheet" href="modalSelector.css">
+    <!-- <link rel="stylesheet" href="loader.css"> -->
+
+</head>
+
+<body>
+    <div id="handlebarentry"></div>
+    <!-- <div class="loader"></div> -->
+
+    <!-- Modal box for select the videos -->
+    <div id="modalSelector" class="modal">
+        <div class="modal-content">
+            <span class="closeModalButton">
+                <i class="material-icons">clear</i>
+            </span>
+            <!-- This need to be loaded from the video library -->
+            <ul>
+                {{ videoSet }}
+            </ul>
+        </div>
+
+    </div>
+    <audio class="hidden" id="mainAudio"></audio>
+    <div class="container" id="videoPlayerContainer">
+        <div class="grid" id="grid">
+
+            <div id="video1-container">
+                <div id="outer-box">
+                    <video class="video-pos" id="video0"></video>
+                    <div id="inner-box">
+                        <img src="images/dummy1.png" alt="overlayImage">
+                        <div id="button-bar">
+                            <i id="audio1" class="material-icons">mic</i>
+                            <i id="fullscreen1" class="material-icons">fullscreen</i>
+                            <i id="remove1" class="material-icons">clear</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="video2-container">
+                <div id="outer-box">
+                    <video class="video-pos" id="video1"></video>
+                    <div id="inner-box">
+                        <img src="images/dummy2.png" alt="overlayImage">
+                        <div id="button-bar">
+                            <i id="audio2" class="material-icons">mic</i>
+                            <i id="fullscreen2" class="material-icons">fullscreen</i>
+                            <i id="remove2" class="material-icons">clear</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="video3-container">
+                <div id="outer-box">
+                    <video class="video-pos" id="video2"></video>
+                    <div id="inner-box">
+                        <img src="images/dummy3.png" alt="overlayImage">
+                        <div id="button-bar">
+                            <i id="audio3" class="material-icons">mic</i>
+                            <i id="fullscreen3" class="material-icons">fullscreen</i>
+                            <i id="remove3" class="material-icons">clear</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="video4-container">
+                <div id="outer-box">
+                    <video class="video-pos" id="video3"></video>
+                    <div id="inner-box">
+                        <img src="images/dummy4.png" alt="overlayImage">
+                        <div id="button-bar">
+                            <i id="audio4" class="material-icons">mic</i>
+                            <i id="fullscreen4" class="material-icons">fullscreen</i>
+                            <i id="remove4" class="material-icons">clear</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="barContainer">
+                <div class="container flex-box">
+                    <i id="replay10Button" class="material-icons">replay_10</i>
+                    <i id="playButton" class="material-icons">play_circle_filled</i>
+                    <i id="forward10Button" class="material-icons">forward_10</i>
+                    <i id="muteButton" class="material-icons">mic_off</i>
+                    <i id="muteMainAudioButton" class="material-icons">record_voice_over</i>
+                    <div id='prog'>
+                        <div id='prog2' role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                            <span class="sr-only">70% Complete</span>
+                        </div>
+                    </div>
+                    <i id="fullscreen" class="material-icons">fullscreen</i>
+                    <!-- <div id="myProgress">
+                            <div id="myBar"></div>
+                        </div> -->
+                    <i id="timeSpan"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="jquery-3.2.1.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="dash.all.min.js"></script>
+
+    <script src="all.js"></script>
+
+</body>
+
+</html>

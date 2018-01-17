@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <div id="handlebarentry"></div>
     <!-- <div class="loader"></div> -->
 
     <!-- Modal box for select the videos -->
@@ -26,9 +27,7 @@
             <span class="closeModalButton"><i class="material-icons">clear</i></span>
             <!-- This need to be loaded from the video library -->
             <ul>
-                <li>Video1</li>
-                <li>Video2</li>
-                <li>Video3</li>
+                
             </ul>
         </div>
     
@@ -41,7 +40,7 @@
                     <div id="outer-box"> 
                         <video class="video-pos" id="video0"></video>
                         <div id="inner-box">
-                            <img src="dummy1.png" alt="overlayImage">
+                            <img src="images/dummy1.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i id="audio1" class="material-icons">mic</i>
                                 <i id="fullscreen1" class="material-icons">fullscreen</i>
@@ -54,7 +53,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video1"></video>
                         <div id="inner-box">
-                            <img src="dummy2.png" alt="overlayImage">
+                            <img src="images/dummy2.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i id="audio2" class="material-icons">mic</i>
                                 <i id="fullscreen2" class="material-icons">fullscreen</i>
@@ -67,7 +66,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video2"></video>
                         <div id="inner-box">
-                            <img src="dummy3.png" alt="overlayImage">
+                            <img src="images/dummy3.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i id="audio3" class="material-icons">mic</i>
                                 <i id="fullscreen3" class="material-icons">fullscreen</i>
@@ -80,7 +79,7 @@
                     <div id="outer-box">
                         <video  class="video-pos" id="video3"></video>
                         <div id="inner-box">    
-                            <img src="dummy4.png" alt="overlayImage">
+                            <img src="images/dummy4.png" alt="overlayImage">
                             <div id="button-bar">
                                 <i id="audio4" class="material-icons">mic</i>
                                 <i id="fullscreen4" class="material-icons">fullscreen</i>
@@ -95,7 +94,6 @@
                         <i id="replay10Button" class="material-icons">replay_10</i>
                         <i id="playButton" class="material-icons">play_circle_filled</i>
                         <i id="forward10Button" class="material-icons">forward_10</i>
-                        <i id="fullscreen" class="material-icons">fullscreen</i>
                         <i id="muteButton" class="material-icons">mic_off</i>
                         <i id="muteMainAudioButton" class="material-icons">record_voice_over</i>
                         <div id='prog'>
@@ -103,6 +101,7 @@
                                 <span class="sr-only">70% Complete</span>
                             </div>
                         </div>
+                        <i id="fullscreen" class="material-icons">fullscreen</i>
                         <!-- <div id="myProgress">
                             <div id="myBar"></div>
                         </div> -->
@@ -117,17 +116,10 @@
     <script src="jquery-3.2.1.js"></script>
     <script src="bootstrap.js"></script>
     <script src="dash.all.min.js"></script>
-    <!-- ES6 classes -->
-    <script src="layouter.js"></script>
-    <script src="custom_player.js"></script>
-    <!-- modal box for selection of perspectives -->
-    <script src="modalSelector.js"></script>
-    
-    <!-- main script for loading the videos -->
-    <script src="main.js"></script>
-    <!-- keybindings for the user -->
-    <script src="keyBindings.js"></script>
 
+    <!-- <script src="all.js"></script> -->
+     
+    <script src="alltranspiled.js"></script>
 </body>
 
 </html>

@@ -7,11 +7,11 @@ urls for the videos in the  set
 start and finish time
 */
 
-let url1 = "bunny_manifest.mpd";
-let url2 = "bunny_manifest.mpd";
-let url3 = "bunny_manifest.mpd";
-let url4 = "bunny_manifest.mpd";
-let audio_url = 'mainAudio.mpd';
+let url1 = "videos/bunny_manifest.mpd";
+let url2 = "videos/bunny_manifest.mpd";
+let url3 = "videos/bunny_manifest.mpd";
+let url4 = "videos/bunny_manifest.mpd";
+let audio_url = 'videos/mainAudio.mpd';
 let start_time = 0;
 let finish_time = 10000;
 // TODO:
