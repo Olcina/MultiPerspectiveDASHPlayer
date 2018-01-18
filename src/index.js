@@ -8,8 +8,8 @@ var context = { videoSet: "My video Seet" };
 
 const __src = ''
 
-app.get('/handlebar', (req, res) => res.send(template(context)))
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + __src  +'/index.html')))
+app.get('/', (req, res) => res.send(template(context)))
+// app.get('/', (req, res) => res.sendFile(path.join(__dirname + __src  +'/index.html')))
 app.get('/404', (req, res) => res.sendFile(path.join(__dirname + __src + '/404.html')))
 app.use(express.static(__dirname + __src +'/css'));
 //Store all HTML files in view folder.

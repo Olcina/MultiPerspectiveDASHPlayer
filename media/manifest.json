@@ -1,0 +1,14 @@
+{
+    "name": "MultiPerspectiveDASH",
+    "short_name": "MultiPlayer",
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}
