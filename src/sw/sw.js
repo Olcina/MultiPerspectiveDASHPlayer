@@ -1,15 +1,11 @@
 self.addEventListener('install', function(event) {
 
         let urlToCache = [
-            '/',
+            '/skeleton',
             'bootstrap.js',
-            'custom_player.js',
             'dash.all.min.js',
             'jquery-3.2.1.js',
-            'keybindings.js',
-            'layouter.js',
-            'main.js',
-            'modalSelector.js',
+            'all.js',
             'css.css',
             'bootstrap.min.css',
             'bootstrap.min.css.map',
