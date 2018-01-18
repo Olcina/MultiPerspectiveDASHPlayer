@@ -6,8 +6,6 @@ const template = require('./templates/index')
 
 var context = { videoSet: "My video Seet" };
 
-console.log(__dirname)
-
 const __src = ''
 
 app.get('/handlebar', (req, res) => res.send(template(context)))

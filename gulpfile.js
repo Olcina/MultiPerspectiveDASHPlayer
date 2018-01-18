@@ -11,13 +11,18 @@ const through = require('through2');
 const defineModule = require('gulp-define-module');
 const rename = require('gulp-rename');
 const del = require('del');
-const server = require('gulp-develop-server');
+const developServer = require('gulp-develop-server');
 const runSequence = require('run-sequence');
 
+
+// Clean the folder build to start fresh
 gulp.task('clean', function (done) {
     return del(['build'], done);
 });
 
+
+// Compile the files in the sass folder into compresed css with prefixes for browsers
+// copy the processed files into the src and build folders
 gulp.task('compile-sass', function () {
     return gulp.src('src/sass/**/*.scss')
         .pipe(sourceMaps.init())
@@ -28,16 +33,20 @@ gulp.task('compile-sass', function () {
         .pipe(gulp.dest('src/css'))
 })
 
+
+// Copy the bootstrap css lib into the css build folder
 gulp.task('copy-bootstrap', function () {
     return gulp.src(['src/css/bootstrap.min.css', 'src/css/bootstrap.min.css.map'])
         .pipe(gulp.dest('build/css'))
 })
 
+//  Copy the external jslibs into the build folder
 gulp.task('copy-jslibs', function () {
     return gulp.src(['src/js/dash.all.min.js', 'src/js/jquery-3.2.1.js','src/js/bootstrap.js'])
         .pipe(gulp.dest('build/js'))
 })
 
+//  concatenation and transpiling of the js files into the 'all.js' file to be load as an HTML script
 gulp.task('scripts-dist', function () {
     return gulp.src(['src/js/layouter.js',
         'src/js/custom_player.js',
@@ -51,11 +60,14 @@ gulp.task('scripts-dist', function () {
         .pipe(gulp.dest('build/js/'))
 })
 
+
+// Copy the SW folder into the Build
 gulp.task('copy-sw', function () {
     return gulp.src('src/sw/*.js')
         .pipe(gulp.dest('build/sw'))
 })
 
+// Precompile the templates into .js files to be inyected in the browser
 gulp.task('templates', function () {
     return gulp.src('src/templates/*.hbs')
         .pipe(handlebars())
@@ -72,16 +84,35 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('build/templates'));
 });
 
-
+// Copy the index.js file into the build
 gulp.task('copy-index', function(){
     return gulp.src('src/index.js')
         .pipe(gulp.dest('build'))
 })
 
+// run  the server and watch for changes in the build js files
+// it restarts the server and load the latest features in case of changes
+gulp.task('server', function () {
+    developServer.listen({ path: 'build/index.js' });
+    gulp.watch([
+        'build/**/*.js'
+    ], developServer.restart);
+});
 
 
+// Watchers for the src folder
+gulp.task('watch', function () {
+    gulp.watch(['src/scss/**/*.scss'], ['compile-sass']);
+    gulp.watch(['src/templates/*.hbs'], ['templates']);
+    gulp.watch(['src/sw/*.js'], ['copy-sw']);
+    gulp.watch(['src/js/*.js'], ['scripts-dist']);
+    gulp.watch(['src/index.js'], ['copy-index']);
+});
+
+
+// Concatenation of the build process to make it available into npm
 gulp.task('serve', function (callback) {
-    runSequence('clean', 'copy-index','copy-jslibs', 'copy-sw', 'copy-bootstrap', 'compile-sass', 'scripts-dist', 'templates','server:start', callback);
+    runSequence('clean', 'copy-index','copy-jslibs', 'copy-sw', 'copy-bootstrap', 'compile-sass', 'scripts-dist', 'templates','server','watch', callback);
 });
 
 
@@ -113,25 +144,6 @@ gulp.task('trasnpile', function () {
         }))
         .pipe(gulp.dest('build/js/'))
 })
-
-
-
-
-
-
-
-
-
-// run server
-gulp.task('server:start', function () {
-    server.listen({ path: 'build/index.js' });
-});
-
-// restart server if app.js changed
-gulp.task('server:restart', function () {
-    gulp.watch(['index.js'], server.restart);
-});
-
 
 
 gulp.task('default', ['clean', 'copy-index', 'copy-sw', 'copy-bootstrap', 'compile-sass', 'script-dist', 'templates'], function () {
