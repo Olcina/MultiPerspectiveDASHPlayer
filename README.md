@@ -6,13 +6,13 @@ This project covers the implementation of an MPEG-DASH player to control several
 
 ## Important notice ( about the project and about me)
 
-By now the project is in an early stage of development. So, If you want to help me below you can find the next implementations that I want to add to the project. I'm completely open to need ideas or comments about this project, feel free to contact me in my personal e-mail.
+Right now the project is in an early stage of development. So, If you want to help me below you can find the next implementations that I want to add to the project. I'm completely open to new ideas or comments about this project. Feel free to contact me in my personal e-mail.
 
 I'm pretty new in the Javascript world but I'm doing my best to learn this language,  so I'm sure that there are a lot of things that can be done much better or that are completely wrong. You can punch me in the face or help me out, that is a decision for you to make.
 
 ## How to use
 
-For using this project on your local machine you should have npm manager installed, install the dependencies and run 'index.js' or "npm run start"
+For using this project on your local machine you should have npm manager installed, install the dependencies and run "npm run start", this will start the gulp tasks to build the app and watch for changes in the development process.
 
 For the video player, I'm using "dash.js" as it has adaptive streaming capabilities for a good cross-browser experience.
 

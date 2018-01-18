@@ -2,9 +2,8 @@
 
 ## Service Worker
 
-- add a service worker to fetch js files, css files, images and the future components.
 - intercept the request queue from dash player with the SW
-- add footer to inform the user about the connection status
+- add footer to inform the user about the connection/sw status
 
 ## IndexesDB
 
@@ -28,19 +27,22 @@
 
 ## General
 
+- document layouter.js
 - create a proper CONTRIBUTE.md file
 
 ## Development Task
 
 - add some tests for the implemented features
 - implement the "custom_player.js" containing the main js class  "VideoController" as an npm module
-- generate a grunt file that can "build" the "src" using uglify and babel.
+
 - autogenerate documentation using DOCjs
 
 ## Solved
 
+- generate a grunt file that can "build" the "src" using uglify and babel. Solved in (89015a5,6cfb196) as a gulpfile for building and hot reloading the app :)
 - add images to the overlays - Solved in (9cf874b)
 - fullscren for the videos and de video players grid - Solved in (7cd2873)
 - fix the video advance bar so the 0% will be the start time and 100% the finish time. Solved in (cba3cc3, 5428de8)
 - add some "ready to use" test videos Solved in (f34864c)
 - adjust the videos as they are added to the main player. If there is only one video it should fit the hole area. If there's 2 the should fit side by side and so on until fill the 4 maximun perspectives. Solved in (7c67d75)
+- add a service worker to fetch js files, css files, images Solved in (4f9364a)
