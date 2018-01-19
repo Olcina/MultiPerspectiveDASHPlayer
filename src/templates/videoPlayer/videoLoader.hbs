@@ -1,0 +1,20 @@
+<!-- Modal box for select the videos -->
+<div id="modalSelector" class="modal">
+    <div class="modal-content">
+        <span class="closeModalButton">
+            <i class="material-icons">clear</i>
+        </span>
+        <h1>{{title}}</h1>
+        <!-- This need to be loaded from the video library -->
+        <div class="perspectives">
+            {{#each perspectives }}
+                    <div class="perspective">
+                        <h1>{{title}}</h1>
+                        <output>{{manifestURL}}</output>
+                        <img src="{{imgURL}}"></img>
+                        <p>{{description}}</p>
+                    </div>
+            {{/each}}
+        </div class="perspectives">
+    </div>
+</div>

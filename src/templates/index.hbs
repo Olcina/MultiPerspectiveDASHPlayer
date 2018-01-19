@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- CSS styling -->
-    <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="layouter_css.css">
-    <link rel="stylesheet" href="modalSelector.css">
+    <link rel="stylesheet" href="all.css">
+    {{!-- <link rel="stylesheet" href="layouter_css.css">
+    <link rel="stylesheet" href="modalSelector.css"> --}}
     <!-- <link rel="stylesheet" href="loader.css"> -->
 
 </head>
@@ -22,21 +22,11 @@
     <div id="handlebarentry"></div>
     <!-- <div class="loader"></div> -->
 
-    <!-- Modal box for select the videos -->
-    <div id="modalSelector" class="modal">
-        <div class="modal-content">
-            <span class="closeModalButton">
-                <i class="material-icons">clear</i>
-            </span>
-            <!-- This need to be loaded from the video library -->
-            <ul>
-                {{ videoSet }}
-            </ul>
-        </div>
+    {{{ videoLoader }}}
 
-    </div>
-    <audio class="hidden" id="mainAudio"></audio>
+
     <div class="container" id="videoPlayerContainer">
+    <audio class="hidden" id="mainAudio"></audio>
         <div class="grid" id="grid">
 
             <div id="video1-container">
