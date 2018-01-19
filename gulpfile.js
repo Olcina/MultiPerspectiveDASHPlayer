@@ -33,6 +33,7 @@ gulp.task('compile-sass', function () {
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
         .pipe(sourceMaps.write('./'))
+        .pipe(concat('all.css'))
         .pipe(gulp.dest('build/css'))
         .pipe(gulp.dest('src/css'))
 })
