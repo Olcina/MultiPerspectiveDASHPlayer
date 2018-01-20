@@ -36,12 +36,17 @@ const layout = new Layouter();
 console.log(controler.players)
 
 // call load videos when document == ready
-ready().
-then(initialLoad).
-then(getDuration).
-then(addVideos).
-then(getInitialTime);
 // create the ready promise
+$(document).ready(function () {
+    console.log('document Ready')
+    ready().
+    then(initialLoad).
+    then(getDuration).
+    then(addVideos).
+    then(getInitialTime);
+    
+})
+
 function ready() {
     return new Promise(function (resolve) {
         if (document.readyState === "complete") {
@@ -70,7 +75,7 @@ function addVideos() {
     controler.add(0, url1)
     controler.add(1, url2)
     controler.add(2, url3)
-    controler.add(3, url4)
+    // controler.add(3, url4)
     // refresh the layout
     refreshLayout(layout, controler)
     layout.muteButton(controler.controllerMuted);
@@ -204,6 +209,13 @@ window.setInterval(function() {
         watchers();}
     ,1000);
 
+// Half second interval for auto-synchronizaition
+window.setInterval(function() {
+ if(!controler.ifSynchronize()) {
+     controler.synchronize();
+     refreshLayout(layout, controler)
+    };
+},500)
 
 // TODO: Fullscreen
 function request_fullscreen(DOMobject) {
@@ -287,3 +299,24 @@ function refreshTimeBar() {
 function refreshLayout(layout,controler) {
     layout.setLayout(controler.getPlayerStatus())
 }
+
+// Perspective loader --> needs to be adopted in a proper controller
+const perspectives = document.getElementsByClassName('perspective')
+
+for (const pers of perspectives) {
+    pers.addEventListener('click', function (e) {
+        let vid_url = this.getElementsByTagName('output')[0].innerText
+        modal.style.display = "none";    
+        controler.add(3, vid_url).then(function(param) {
+            refreshLayout(layout, controler)
+        }).catch(controler.setSource(controler.getFirstFreeSlot(), vid_url))
+        // modal.style.display = "none";
+        // refresh the layout
+        // console.log('syncro')
+        e.stopImmediatePropagation();
+        
+    })
+    
+}
+
+console.log(perspectives)

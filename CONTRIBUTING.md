@@ -11,12 +11,11 @@
 
 ## VideoPlayer
 
-- ensure synchronization between the videos
 - add an image to background the video player.
 - detect max-size of the browser to set the quality. So we don't load several 1080p videos on mobile phones.
 - don't show the videos before the are in a "ready to play" # MULTI VIDEO DASH INTEGRATION -- Loader created (e49ac3b)
-- Mute/Unmute icon changes dynamically
-- function to mute the videos individually
+- remake the code unsing promises for loading the videos
+- error handling
 
 ## Database
 
@@ -34,7 +33,6 @@
 
 - add some tests for the implemented features
 - implement the "custom_player.js" containing the main js class  "VideoController" as an npm module
-
 - autogenerate documentation using DOCjs
 
 ## Solved
@@ -46,3 +44,6 @@
 - add some "ready to use" test videos Solved in (f34864c)
 - adjust the videos as they are added to the main player. If there is only one video it should fit the hole area. If there's 2 the should fit side by side and so on until fill the 4 maximun perspectives. Solved in (7c67d75)
 - add a service worker to fetch js files, css files, images Solved in (4f9364a)
+- ensure synchronization between the videos.  Solved in(52d2033)
+- Mute/Unmute icon changes dynamically. Solved in (0a9f961)
+- function to mute the videos individually. Solved in (0a9f961)

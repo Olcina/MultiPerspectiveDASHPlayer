@@ -8,7 +8,7 @@ const videoloader = require('./templates/videoPlayer/videoLoader')
 
 // Create a false lesson object for test and populate with false perspectives
 let lesson = {
-    title: 'Demo lesson',
+    title: 'Perspective Selector',
     perspectives: [],
 }
 let indent = 1
@@ -17,7 +17,7 @@ for (let index = 1; index < 20; index++) {
     let perspective = {
         name: `pers ${index}`,
         manifestURL: `videos/bunny_manifest.mpd`,
-        imgURL: `images/dummy${indent}.png`,
+        imgURL: `https://dummyimage.com/600x400/d1d1d1/fa0043&text=Perspective+${index}`,
         description: `this is a perspective`,
 
     }

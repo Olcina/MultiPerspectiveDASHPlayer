@@ -8,6 +8,11 @@ For example, A tennis trainer that wants to analyze the movements of his student
 
 ![alt text](coverImage.jpg "MultiVideoPlayer with 3 perpectives loaded")
 
+Pressing the key "S" opens the Perspective selector that handles the adition of new perspectives to the video player.
+
+![alt text](PerspectiveSelector.jpg "Perspective Selector with dummy images")
+
+
 ## How to use
 
 For using this project on your local machine you should have npm manager installed, install the dependencies and run "npm run start", this will start the gulp tasks to build the app and watch for changes in the development process.
