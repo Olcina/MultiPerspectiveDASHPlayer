@@ -19,8 +19,12 @@ window.addEventListener("keydown", function (event) {
             controler.add(3, url)
             refreshLayout(layout, controler)
             break;
+        case 'r':
+            refreshLayout(layout, controler)
+            break;
         case 's':
             modal.style.display = "block";
+            break;
         case 'm':
             controler.toogleGlobalMute();
             layout.muteButton(controler.controllerMuted);
@@ -33,6 +37,13 @@ window.addEventListener("keydown", function (event) {
         case "ArrowRight":
             // Do something for "right arrow" key press.
             controler.seekForward(10)
+            break;
+        case "q":
+            // Do something for "right arrow" key press.
+            controler.synchronize()
+            break;
+        case "w":
+            console.log(controler.getFirstFreeSlot())
             break;
         case " ":
             // Do something for "espace" key press.

@@ -3,10 +3,36 @@ const app = express()
 const path = require('path')
 // const videoController = require('./js/custom_player.js')
 const template = require('./templates/index')
+const videoloader = require('./templates/videoPlayer/videoLoader')
 
-var context = { videoSet: "My video Seet" };
+
+// Create a false lesson object for test and populate with false perspectives
+let lesson = {
+    title: 'Demo lesson',
+    perspectives: [],
+}
+let indent = 1
+for (let index = 1; index < 20; index++) {
+    
+    let perspective = {
+        name: `pers ${index}`,
+        manifestURL: `videos/bunny_manifest.mpd`,
+        imgURL: `images/dummy${indent}.png`,
+        description: `this is a perspective`,
+
+    }
+    indent += 1
+    if (indent > 4) {
+        indent = 1
+    }
+    lesson.perspectives.push(perspective)
+    
+}
 
 const __src = ''
+
+var context = { videoLoader: videoloader(lesson) };
+
 
 app.get('/', (req, res) => res.send(template(context)))
 app.get('/skeleton', (req, res) => res.send(template()))

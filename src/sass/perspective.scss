@@ -8,7 +8,7 @@ $secondary-color: rgb(189, 133, 133);
     padding: 0;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(3, 32.5%);
+    grid-template-columns: repeat(5, 19%);
     margin: 0;
     // flex-flow: row wrap;
     // justify-content: space-around;
@@ -26,10 +26,18 @@ $secondary-color: rgb(189, 133, 133);
     }
     h1 {
         background-color: $secondary-color;
+        display: none;
     }
     img {
         width: 100%;
     }
+    output {
+        display: none;
+    }
+    &:nth-child(even) {
+        background-color: $secondary-color;
+    }
+    
 }
 
 

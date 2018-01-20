@@ -42,6 +42,8 @@ class VideoController {
         this.startTime = startTime;
         this.activePlayers = 0;
         this.playerStatus = [false,false,false,false]
+        this.synchronize = this.synchronize.bind(this);
+        this.getTime = this.getTime.bind(this);
         // this.init();
     }
     /**
@@ -52,6 +54,7 @@ class VideoController {
         // create and append the video elements on the root element
         // Main Audio
         this.mainAudio = dashjs.MediaPlayer().create();
+        
         this.mainAudio.on('canPlay',function () {
             this.isReady = true
         }.bind(this));
@@ -59,7 +62,9 @@ class VideoController {
         //  - 4 video tags
         const n = 4;
         for (let i = 0; i < n; i++) {
-            this.players.push(dashjs.MediaPlayer().create())
+            let player = new dashjs.MediaPlayer().create()
+            
+            this.players.push(player)
         };
     }
 
@@ -73,14 +78,24 @@ class VideoController {
      */
     // TODO : raise error when video element with id='video{slot}' doesn't exist 
     add(slot, url) {
-
-        let html_vid_element = document.querySelector(`#video${slot}`)
-        this.players[slot].initialize(html_vid_element, url, false)
-        return new Promise((resolve, reject) => {
+        return new Promise( function(resolve,reject){
+            let html_vid_element = document.querySelector(`#video${slot}`)
+            this.players[slot].initialize(html_vid_element, url, false)
             if (this.players[slot].isReady()) {
-                resolve(console.log(`ready vid${slot}`));
+                resolve(this.players[slot])
             }
-        })
+        }.bind(this))
+
+        
+        // return this.players[slot]
+        // return new Promise((resolve, reject) => {
+        //     if (this.players[slot].isReady()) {
+        //         console.log('try to sync')
+                
+        //         resolve(console.log(`ready vid${slot}`));
+        //     }
+        // })
+
     }
 
     /**
@@ -115,7 +130,12 @@ class VideoController {
      * @returns {number} the reference time 
      */
     getTime() {
-        return this.mainAudio.time();
+        if (this.mainAudio.isReady()) {
+            return this.mainAudio.time();
+        } else {
+            return 0;
+        }
+
     }
     
     /**
@@ -151,7 +171,17 @@ class VideoController {
             } catch (e) { }
         };
     }
+    getFirstFreeSlot() {
+        let slot = 0
+        for (const pl of this.players) {
+            if(!pl.isReady()) {
+                return slot
+            } else {
+                slot +=1
+            }
 
+        }
+    }
     /**
      * Analize the status of the players, returns an boolean array wiht the status of the videos
      */
@@ -175,6 +205,35 @@ class VideoController {
         ele.attachSource('');
     }
 
+    ifSynchronize() {
+        let isSynchronize = true
+        console.log(this.mainAudio.time())
+        for (const pl of this.players) {
+            // if ( )
+            try {
+                if(Math.abs(this.mainAudio.time() - pl.time()) > 0.1) {
+                    return false
+                }
+            } catch (e) {}
+        }
+        return isSynchronize
+    }
+
+    synchronize() {
+        return new Promise(function(resolve,reject) {
+            let paused = this.mainAudio.isPaused()
+            let times = this.getTime()
+        for (const player of this.players) {
+            try {
+                if (!paused) {
+                    player.play()
+                }
+                player.seek(times)
+            } catch (e) { }
+        }
+        resolve(console.log('syncronization trought promise'))
+        }.bind(this))
+    }
 
     /**
      * seek the value for all the active players
@@ -233,7 +292,13 @@ class VideoController {
     setSource(slot, url) {
         // let buildedUrl = buildMediaQueryUrlSource(url,this.getTime());
         // console.log(buildedUrl);
-        this.players[slot].attachSource(url);
+        try{
+            this.players[slot].attachSource(url);
+        } catch (e) {
+            console.log(e)
+            let html_vid_element = document.querySelector(`#video${slot}`)
+            this.players[slot].initialize(html_vid_element, url, false)
+        }
     }
 
     
