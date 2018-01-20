@@ -1,13 +1,19 @@
+@import 'variables';
+
 .hide {
     display: none; 
 }
-
+.container {
+    padding-right: 0px;
+    padding-left: 0px;
+}
 /* grid css */
 .grid {
     width: inherit;
     display: grid;
     grid-template-columns: 3;
     grid-template-rows: 5;
+    // background-image: url(images/videoarea.png)
 }
 
 /* layout classes */

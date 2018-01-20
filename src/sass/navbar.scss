@@ -1,0 +1,32 @@
+@import 'variables';
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: $my-white;
+    overflow: auto;
+    border-top: 10px $primary-color solid;
+    box-shadow: 4px 5px 20px 0 rgba(0, 0, 0, 0.4);
+    a {
+        float: left;
+        color: $primary-color;
+        text-align: center;
+        padding: 8px 20px;
+        text-decoration: none;
+        font-size: 17px;
+        /* Add a color to the active/current link */
+        &.active {
+            // background-color: $primar
+            background-color: rgb(221, 221, 221);
+        }
+        /* Change the color of links on hover */
+        &:hover {
+            background-color: #ddd;
+            color: black;
+
+        }
+        &.right {
+            float: right;
+        }
+    }
+}

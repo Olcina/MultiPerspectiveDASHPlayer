@@ -1,7 +1,4 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: rgb(112, 45, 45);
-$secondary-color: rgb(189, 133, 133);
-
+@import 'variables';
 
 .perspectives {
     // display: flex;
@@ -24,6 +21,9 @@ $secondary-color: rgb(189, 133, 133);
     &:hover {
         transform: scale(1.2)
     }
+    &:nth-child(even) {
+        background-color: $secondary-color;
+    }
     h1 {
         background-color: $secondary-color;
         display: none;
@@ -34,25 +34,25 @@ $secondary-color: rgb(189, 133, 133);
     output {
         display: none;
     }
-    &:nth-child(even) {
-        background-color: $secondary-color;
+    p {
+        display: none;
     }
     
 }
 
 
 /* Medium screens */
-@media all and (max-width: 800px) {
+@media (max-width: 800px) {
   .perspectives {
     /* When on medium sized screens, we center it by evenly distributing empty space around items */
-    justify-content: space-around;
+    grid-template-columns: repeat(3, 32.5%);
   }
 }
 
 /* Small screens */
-@media all and (max-width: 500px) {
+@media (max-width: 500px) {
   .perspectives {
     /* On small screens, we are no longer using row direction but column */
-    flex-direction: column;
+    grid-template-columns: repeat(2, 45%);
   }
 }
